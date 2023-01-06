@@ -1,0 +1,37 @@
+{% extends 'base2.html' %}
+{% block content %}
+
+<div class="container">
+    <section class="vh-100" style="background-color: #e0e0e0;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+        <div class="card">
+            <div class="card-header">
+                FORM REGISTER 
+            </div>
+            <div class="card-body">
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <div class="alert alert-success">{{ message }}</div>
+                    {% else %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+                <form action="{% url 'signup' %}" method="post">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <button class="btn btn-primary">Kirim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+</div>
+{% endblock %}

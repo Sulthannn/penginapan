@@ -1,0 +1,46 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+
+<div class="pt-16">
+    <div class="w-[70%] mx-auto text-justify">
+        <h3 class="text-center py-2 text-blue-700 font-semibold text-2xl">Detail Penginapan<span class="text-green-600">  {{ penginapan.nama }}</span></h3>
+        <center>
+
+            <table>
+                <tr>
+                    <td>Nama Penginapan</td>
+                    <td>:</td>
+                    <td> {{ penginapan.nama }}</td>
+                </tr>
+                <tr>
+                    <td>Jenis</td>
+                    <td>:</td>
+                    <td> {{ penginapan.jenis_id }}</td>
+                </tr>
+                <tr>
+                    <td>Koordinat</td>
+                    <td>:</td>
+                    <td> {{ penginapan.koordinat }}</td>
+                </tr>
+                <tr>
+                    <td>Lokasi</td>
+                    <td>:</td>
+                    <td> {{ penginapan.lokasi }}</td>
+                </tr>
+                <tr>
+                    <td>Harga</td>
+                    <td>:</td>
+                    <td> {{ penginapan.harga }}</td>
+                </tr>
+                <tr>
+                    <td>Tersisa</td>
+                    <td>:</td>
+                    <td> {{ penginapan.tersisa }}</td>
+                </tr>
+            </table>
+        </center>
+        <br><br><br>
+    </div>
+</div>
+{% endblock %}

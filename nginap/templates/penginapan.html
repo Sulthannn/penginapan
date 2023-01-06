@@ -1,0 +1,59 @@
+{% extends 'base3.html' %}
+{% block content %}
+
+   <center><h1>Hello Admin</h1></center>
+   <a href="/tambah_penginapan" type="button" class="btn btn-primary">Tambah Data</a>
+   <br><br>
+   <table class="table table-bordered table-stripe">
+        <tr>
+            <th>KOORDINAT</th>
+            <th>NAMA</th>
+            <th>HARGA</th>
+            <th>LOKASI</th>
+            <th>TERSISA</th>
+            <th>JENIS PENGINAPAN</th>
+            <th>FOTO</th>
+            <th>AKSI</th>
+        </tr>
+        {% for penginapan in nginaps %}
+        <tr>
+            <td>{{ penginapan.koordinat }}</td>
+            <td>{{ penginapan.nama }}</td>
+            <td>{{ penginapan.harga }}</td>
+            <td>{{ penginapan.lokasi }}</td>
+            <td>{{ penginapan.tersisa }}</td>
+            <td>{{ penginapan.jenis_id }}</td>
+            <td>
+                {% if penginapan.foto %}
+                <img src="{{ penginapan.foto.url }}" width="200px">
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'detail_penginapan' penginapan.id %}" class="btn btn-sm btn-primary">Detail</a><br><br>
+                <a href="{% url 'update_penginapan' penginapan.id %}" class="btn btn-sm btn-warning">Edit</a><br><br>
+                <a href="#" class="btn btn-sm btn-danger" onclick="hapus_penginapan('{{ penginapan.id}}','{{ penginapan.nama}}')">Hapus</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function hapus_penginapan(id_penginapan, nama){
+            swal({
+                title: "Apakah Anda yakin data akan dihapus?",
+                text: "Setelah data"+ nama +" dihapus, data tidak akan dikembalikan!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Berhasil", "Data Penginapan"+nama +"Berhasil Dihapus!", "success").then(function(){
+                        window.location.href = "/nginap/delete_penginapan/"+id_penginapan;
+                    });
+                } 
+            });
+        } 
+    </script>
+
+{% endblock %}
